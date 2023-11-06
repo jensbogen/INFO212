@@ -1,8 +1,14 @@
+from flask import Flask
 from neo4j import GraphDatabase, Driver, AsyncGraphDatabase, AsyncDriver
+from flask import render_template, request, redirect, url_for
+from project import app
+import json
 
-# Kjri3Nql99OoG5YcsgOWxrsb8LYIpnasclZTaauvtc8
-URI = "17222aae.databases.neo4j.io"
-AUTH = ("neo4j", "Kjri3Nql99OoG5YcsgOWxrsb8LYIpnasclZTaauvtc8")
+app = Flask(__name__)
+
+#Kjri3Nql99OoG5YcsgOWxrsb8LYIpnasclZTaauvtc8
+URI = "e478977f.databases.neo4j.io"
+AUTH = ("neo4j", "_T8z-J6M7BJxAL0QYGtaUQrX1YMSFE23J9N1BlgNEUY")
 def _get_connection() -> GraphDatabase:
    driver = GraphDatabase.driver(URI, auth=AUTH)
    driver.verify_connectivity()
@@ -11,8 +17,6 @@ def _get_connection() -> GraphDatabase:
 # Use the execute_query function to execute custom queries in the Neo4j database.
 # This allows for flexibility in performing actions such as creating, updating, or deleting records
 # with dynamic queries that may not be covered by specific functions.
-
-    
 def node_to_json(node):
   node_properties = dict(node.items())
   return node_properties

@@ -1,21 +1,17 @@
 from project import app
-import json
-from flask import Flask, request
-from my_dao import *
-# C:\Users\OhRLD\Downloads\__MACOSX\flask-mvc-example\project\venv\Scripts\activate
+from flask import Flask, request, redirect, url_for
+from project.controllers.my_dao import *
 
+#C:\Users\OhRLD\Downloads\__MACOSX\flask-mvc-example\project\venv\Scripts\activate
 
 @app.route('/save_car', methods=['POST'])
 def save_car_info():
   record = json.loads(request.data)
   print(record)
 
-
 @app.route('/get_cars', methods=['GET'])
 def query_records():
    return findAllCars()
-
-
 
 @app.route('/update_car', methods=['PUT'])
 def update_car_info():
@@ -117,10 +113,6 @@ def delete_employee_info(employee_id):
 
 
 #implementing ordering of cars
-
-
-
-
 @app.route('/order_car', methods=['POST'])
 def order_car_info():
     data = json.loads(request.data)
@@ -135,7 +127,6 @@ def order_car_info():
         return result
 
 #Implementing cancellation of cars
-
 @app.route('/cancel_order_car', methods=['POST'])
 def cancel_order_car_info():
     data = json.loads(request.data)
